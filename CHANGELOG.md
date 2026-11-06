@@ -9,4 +9,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add `invoice_extractor`: strict `parse_amount`, Decimal invoice validation per ISO 4217 minor units, bounded LLM repair loop (`extract_invoice`) and a `validate`/`extract` CLI.
 - Initial project structure from the factory utility template.

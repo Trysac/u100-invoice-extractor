@@ -1,21 +1,39 @@
-"""Extract invoices and receipts from text into validated JSON with Decimal arithmetic checks per ISO 4217 minor units and a bounded LLM repair loop"""
+"""Extract invoices from text into validated JSON with Decimal arithmetic checks."""
 
 from __future__ import annotations
 
-__all__ = ["__version__", "normalize"]
+from .core import (
+    ISO_4217_EXPONENTS,
+    Invoice,
+    LineItem,
+    ValidationIssue,
+    invoice_to_dict,
+    parse_amount,
+    validate_invoice,
+)
+from .errors import AmbiguousAmountError, InvoiceError
+from .extract import AttemptRecord, ExtractionResult, extract_invoice
+from .llm import FakeLLM, LLMPort, Message, RecordedLLM, RecordingExhaustedError
+
+__all__ = [
+    "ISO_4217_EXPONENTS",
+    "AmbiguousAmountError",
+    "AttemptRecord",
+    "ExtractionResult",
+    "FakeLLM",
+    "Invoice",
+    "InvoiceError",
+    "LLMPort",
+    "LineItem",
+    "Message",
+    "RecordedLLM",
+    "RecordingExhaustedError",
+    "ValidationIssue",
+    "__version__",
+    "extract_invoice",
+    "invoice_to_dict",
+    "parse_amount",
+    "validate_invoice",
+]
 
 __version__ = "0.1.0"
-
-
-def normalize(value: str) -> str:
-    """Return ``value`` trimmed and lower-cased.
-
-    Placeholder API created by the template: replace it with the utility's real behavior.
-
-    Raises:
-        ValueError: if ``value`` is empty or only whitespace.
-    """
-    cleaned = value.strip()
-    if not cleaned:
-        raise ValueError("value must not be empty")
-    return cleaned.lower()
