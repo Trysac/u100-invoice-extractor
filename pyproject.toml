@@ -19,6 +19,9 @@ classifiers = [
 ]
 dependencies = []
 
+[project.scripts]
+invoice-extractor = "invoice_extractor.__main__:main"
+
 [project.urls]
 Homepage = "https://github.com/Trysac/u100-invoice-extractor"
 Source = "https://github.com/Trysac/u100-invoice-extractor"
